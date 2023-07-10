@@ -42,7 +42,6 @@ app.post('/user/signup', async(req, res)=> {
     const {name, email, password,phone,address} = req.body;
     try {
       let user = await User.create({name, email, password,phone,address});
-      user = await User.findByCredentials(email, password);
       res.json({user,message:"success"});
     } catch (e) {
       if(e.code === 11000) return res.status(400).send('Email already exists');
