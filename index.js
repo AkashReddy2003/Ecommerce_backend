@@ -57,6 +57,14 @@ app.post('/user/signup', async(req, res)=> {
       res.status(400).send(e.message);
     }
   })
+  app.get('/users', async(req, res)=> {
+    try {
+      const users = await User.find();
+      res.json(users);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  })
   app.get('/user/drivers', async(req, res)=> {
     try {
       const users = await User.find({ role: "driver" });
